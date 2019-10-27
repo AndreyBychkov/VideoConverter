@@ -43,6 +43,6 @@ class Server(host: String, port: Int) {
     }
 
     fun stop() {
-        server.stop(timeUnit = TimeUnit.SECONDS, gracePeriod = 10, timeout = 20)
+        server.stop(timeUnit = TimeUnit.MILLISECONDS, gracePeriod = 100, timeout = 1000)
     }
 }
