@@ -1,10 +1,16 @@
-import io.ktor.application.*
-import io.ktor.http.*
-import io.ktor.request.receiveStream
-import io.ktor.response.*
-import io.ktor.routing.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
+import io.ktor.application.call
+import io.ktor.http.ContentType
+import io.ktor.http.content.PartData
+import io.ktor.http.content.forEachPart
+import io.ktor.http.content.streamProvider
+import io.ktor.request.receiveMultipart
+import io.ktor.response.respondFile
+import io.ktor.response.respondText
+import io.ktor.routing.get
+import io.ktor.routing.post
+import io.ktor.routing.routing
+import io.ktor.server.engine.embeddedServer
+import io.ktor.server.netty.Netty
 import java.util.concurrent.TimeUnit
 
 
@@ -24,12 +30,22 @@ class Server(host: String, port: Int) {
                     val inputFile = createTempFile("temp-input-file", ".tmp")
                     val outputFile = createTempFile("temp-output-file", ".$format")
 
-                    val stream = call.receiveStream()
-                    inputFile.writeBytes(stream.readBytes())
+                    val multipart = call.receiveMultipart()
+
+                    multipart.forEachPart { part ->
+                        if(part is PartData.FileItem) {
+                            part.streamProvider().use { partData ->
+                                inputFile.outputStream().buffered().use { fileData ->
+                                    partData.copyTo(fileData)
+                                }
+                            }
+                        }
+                        part.dispose()
+                    }
 
                     videoConverter.convert(inputFile, outputFile)
 
-                    call.respondBytes(outputFile.readBytes())
+                    call.respondFile(outputFile)
 
                     inputFile.delete()
                     outputFile.delete()

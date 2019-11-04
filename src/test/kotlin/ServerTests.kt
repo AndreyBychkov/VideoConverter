@@ -1,7 +1,11 @@
 import io.kotlintest.specs.StringSpec
 import io.ktor.client.HttpClient
-import io.ktor.client.request.post
-import io.ktor.client.request.url
+import io.ktor.client.request.forms.submitFormWithBinaryData
+import io.ktor.http.ContentDisposition
+import io.ktor.http.HttpHeaders
+import io.ktor.http.content.PartData
+import io.ktor.http.headersOf
+import kotlinx.io.streams.asInput
 
 
 class ServerTests : StringSpec() {
@@ -12,10 +16,28 @@ class ServerTests : StringSpec() {
             val client = HttpClient()
             val source = "SampleVideo_1280x720_1mb.mp4".asResource()!!
 
-            val respond = client.post<ByteArray> {
-                url("http://127.0.0.1:8080/convert/avi")
-                body = source.inputStream().readBytes()
-            }
+            val respond = client.submitFormWithBinaryData<ByteArray>(
+                port = 8080,
+                path = "convert/avi",
+                formData = listOf(
+                    PartData.FormItem(
+                        "sample", {}, headersOf(
+                            HttpHeaders.ContentDisposition,
+                            ContentDisposition.Inline
+                                .withParameter(ContentDisposition.Parameters.Name, "foo")
+                                .toString()
+                        )
+                    ),
+                    PartData.FileItem({ source.inputStream().asInput() }, {}, headersOf(
+                        HttpHeaders.ContentDisposition,
+                        ContentDisposition.File
+                            .withParameter(ContentDisposition.Parameters.Name, "video")
+                            .withParameter(ContentDisposition.Parameters.FileName, "upload")
+                            .toString()
+                        )
+                    )
+                )
+            )
 
             assert(respond.isNotEmpty())
         }
