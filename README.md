@@ -55,3 +55,8 @@ val response: ByteArray = request.post(...)
 val videoFile = File("path/to/file")
 videoFile.writeBytes(response)
 ```
+
+### Building from source
+1. clone project: `git clone https://github.com/AndreyBychkov/VideoConverter.git`
+2. run `gradle build` from project directory.
+3. run tests: `gradle test`
