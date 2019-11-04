@@ -1,7 +1,7 @@
 import ws.schild.jave.*
 import java.io.File
 
-class VideoConverter {
+internal class VideoConverter {
     fun convert(source: File, target: File) {
         val audio = AudioAttributes().apply {
             setCodec(AudioAttributes.DIRECT_STREAM_COPY)
