@@ -1,24 +1,23 @@
 import io.ktor.application.call
-import io.ktor.http.ContentType
-import io.ktor.http.content.PartData
-import io.ktor.http.content.forEachPart
-import io.ktor.http.content.streamProvider
+import io.ktor.http.content.*
 import io.ktor.request.receiveMultipart
 import io.ktor.response.respondFile
-import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.post
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 
 class Server(host: String, port: Int) {
     private val server = embeddedServer(Netty, host = host, port = port) {
         routing {
-            get("/") {
-                call.respondText("Welcome to server!", ContentType.Text.Html)
+
+            static {
+                defaultResource("index.html", "static")
+                resources("static")
             }
 
             VideoFormats.values().forEach {

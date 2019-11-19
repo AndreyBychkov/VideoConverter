@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="stylesheet" href="vendor/normalize.css">
+    <link rel="stylesheet" href="pages/style.css">
+    <title>Video Converter</title>
+    <script defer src="scripts/handler.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <main class="content">
+            <h1 class="heading">Video Converter</h1>
+            <form onsubmit="return handle(this)" class="upload-form" name="uploader" id="myform" enctype="multipart/form-data" method="POST">
+                <div class="upload-form__input-container">
+                    <label for="upload-form__input">
+                        <div class="upload-form__file-window">
+                            <h2 class="upload-form__filename">choose file</h2>
+                        </div>
+                    </label>
+                    <label for="upload-form__input" class="upload-form__button">
+                        <img class="upload-form__image" alt="Упс, не прогрузилось" src="images/folder-opened.svg">
+                    </label>
+                    <input type="file" name="initial-document" id="upload-form__input">
+                </div>
+                <div class="upload-form__submit-container">
+                    <p class="submit-container__title">to</p>
+                    <select class="submit-container__formats" name="selector" form="myform">
+                        <option class="submit-container__format-name" value="avi">avi</option>
+                        <option class="submit-container__format-name" value="mp4">mp4</option>
+                        <option class="submit-container__format-name" value="mov">mov</option>
+                    </select>
+                    <input type="submit" class="upload-form__submit-button" value="convert">
+                </div>
+            </form>
+            <h3 class="status">Converting...</h3>
+            <div class="download-container download-container_animation">
+                <img class="download-container__title" alt="Упс, не прогрузилось" src="images/download-image.svg">
+                <a class="download-container__link" href="">
+                    <img class="download-container__image" alt="Упс, не прогрузилось" src="images/download-button.svg">
+                </a>
+            </div>
+        </main>
+    </div>
+    <script src="scripts/fileInput.js"></script>
+</body>
+</html>

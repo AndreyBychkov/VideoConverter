@@ -4,9 +4,15 @@
 
 HTTP server for converting video into different formats, like MP4, AVI and etc.
 
+There are two ways of usage Video converter at the moment:
+
+1. [Native](#getting-started)
+2. [User Interface](##user-interface)
+
 ## Getting Started
 
 ### Installing dependencies
+
 1. Server runs on Java Virtual Machine so be sure you have Java on your computer. 
 You can download latest version [here](https://java.com/ru/download/).
 
@@ -21,7 +27,7 @@ val server = Server(host = "127.0.0.1", port = 8080)
 server.start()
 ...
 server.stop()
-``` 
+```
 
 Remember that server occupies thread it is started in. 
 So you usually run it something like this:
@@ -35,6 +41,7 @@ thread {
 ### Using server
 
 #### Roots
+
 You can convert video using following request template: `"/convert/${format}"`, 
 where format is video format you want to convert your file into. Format must be in lowercase.
 
@@ -57,6 +64,23 @@ videoFile.writeBytes(response)
 ```
 
 ### Building from source
+
 1. clone project: `git clone https://github.com/AndreyBychkov/VideoConverter.git`
 2. run `gradle build` from project directory.
 3. run tests: `gradle test`
+
+
+
+## User Interface
+
+### Running script
+
+1. Open project folder in IDE.
+
+2. Run /src/main/kotlin/runServer.kt to launch server on 127.0.0.1:8080.
+
+   *Or you can run server any way you prefer.*
+
+![jpg](/src/main/resources/static/images/ui.jpg)
+
+If the server returns an Internal Error 500 it will be displayed on the page.
