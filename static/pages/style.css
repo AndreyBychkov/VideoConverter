@@ -1,0 +1,111 @@
+@import url(../fonts/fonts.css);
+
+/*TODO Change to nice font*/
+/*TODO Make responsive*/
+
+body {
+    background-color: #E3EEFF;
+}
+
+.page-wrapper {
+    max-width: 1440px;
+    margin: auto;
+}
+
+.content {
+    min-height: 720px;
+    margin: 20px;
+    border: 8px dashed #4B29B2;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.upload-form__input-container {
+    margin-top: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-form__file-window {
+    width: 650px;
+    height: 55px;
+    border: 8px solid #4B29B2;
+    border-radius: 20px;
+    background: #F5E6FF;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.upload-form__filename {
+    margin: 15px 0 0 15px;
+    font-family: BubbleFont, serif;
+    color: #4B29B2;
+    font-size: 28px;
+}
+
+/*TODO Add animation hover and shadow to image*/
+.upload-form__image {
+    width: 200px;
+    height: 163px;
+    cursor: pointer;
+}
+
+.upload-form__submit-container {
+    overflow: hidden;
+    display: block;
+    margin: auto;
+    padding: 0;
+    width: 300px;
+    height: 200px;
+    background-image: url("../images/arrows.svg");
+    background-position: center;
+    background-size: cover;
+}
+
+/*TODO Add animation hover and shadow to button*/
+.upload-form__submit-button {
+    display: block;
+    padding: 0;
+    width: 195px;
+    height: 60px;
+    margin: 50px auto;
+    border: none;
+    background-image: url("../images/convert-button.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 13px;
+    font-family: BubbleFont, serif;
+    font-size: 30px;
+    color: white;
+}
+
+.upload-form__submit-button:hover {
+    opacity: 0.85;
+}
+
+/* Hiding of default input ugly form :P */
+#upload-form__input {
+    display: none;
+}
+
+.download-container {
+    margin: 30px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.download-container__title {
+    margin: 0 50px 0 0;
+    font-family: BubbleFont, serif;
+    color: #4B29B2;
+    font-size: 80px;
+
+}
+
+.download-container__image {
+    width: 130px;
+    height: 130px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <link rel="stylesheet" href="./vendor/normalize.css">
+    <link rel="stylesheet" href="./pages/style.css">
+    <title>Video Converter</title>
+</head>
+<body>
+    <div class="page-wrapper">
+        <main class="content">
+            <form action="" class="upload-form" name="uploader" enctype="multipart/form-data" method="POST">
+                <div class="upload-form__input-container">
+                    <label for="upload-form__input">
+                        <div class="upload-form__file-window">
+                            <h2 class="upload-form__filename">Filename</h2>
+                        </div>
+                    </label>
+                    <label for="upload-form__input" class="upload-form__button">
+                        <img class="upload-form__image" alt="Упс, не прогрузилось" src="./images/folder-opened.svg">
+                    </label>
+                </div>
+                <div class="upload-form__submit-container">
+                    <input type="file" name="initial-document" accept="" id="upload-form__input">
+                    <input type="submit" class="upload-form__submit-button" value="Convert">
+                </div>
+            </form>
+            <div class="download-container">
+                <h2 class="download-container__title">DOWNLOAD</h2>
+                <a class="download-container__link" href="">
+                    <img class="download-container__image" alt="Упс, не прогрузилось" src="./images/download-button.svg">
+                </a>
+            </div>
+        </main>
+    </div>
+    <script src="./scripts/fileInput.js"></script>
+</body>
+</html>
