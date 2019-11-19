@@ -7,7 +7,7 @@ HTTP server for converting video into different formats, like MP4, AVI and etc.
 There are two ways of usage Video converter at the moment:
 
 1. [Native](#getting-started)
-2. [User Interface](##user-interface)
+2. [User Interface](#user-interface)
 
 ## Getting Started
 
